@@ -1,8 +1,9 @@
 import { FeaturedProducts, Hero } from "../components";
-import axios from "axios";
+import { customFetch } from "../utils";
 
+const featuredProductsUrl = "/products?featured=true";
 export const loader = async () => {
-    const response = await axios("https://strapi-store-server.onrender.com/api/products?featured=true");
+    const response = await customFetch(featuredProductsUrl);
     const products = response.data.data;
     return {products};
 }
