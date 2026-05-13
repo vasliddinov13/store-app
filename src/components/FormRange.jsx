@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { formatPrice } from '../utils';
 
-const FormRange = ({label,name,size}) => {
+const FormRange = ({label,name,size,price}) => {
+    console.log(price);
     const maxPrice = 100000;
     const step = 1000;
-    const [selectedPrice, setSelectedPrice] = useState(maxPrice);
+    const [selectedPrice, setSelectedPrice] = useState(price || maxPrice);
   return (
     <div className='form-control'>
         <label htmlFor={name} className='label flex'>

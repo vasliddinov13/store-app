@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Link, useLoaderData } from 'react-router-dom'
 import FormInput from './FormInput'
 import FormSelect from './FormSelect'
@@ -6,14 +6,14 @@ import FormRange from './FormRange'
 import FormCheckbox from './FormCheckbox'
 
 const Filter = () => {
-  const { meta } = useLoaderData();
-  console.log(meta);
+  const { meta,params } = useLoaderData();
   return (
     <Form className='bg-base-200 rounded-md px-8 py-4 grid gap-x-4 gap-y-8 sm:grid-col-2 md:grid-cols-3 lg:grid-cols-4'>
       <FormInput
         label="Search Product"
         type="search"
         name="search"
+        defaultValue={params.search}
         size="input-sm"
       />
 
@@ -22,6 +22,7 @@ const Filter = () => {
         name="category"
         list={meta.categories}
         size="select-sm"
+        defaultValue={params.category}
       />
 
       <FormSelect
@@ -29,6 +30,7 @@ const Filter = () => {
         name="company"
         list={meta.companies}
         size="select-sm"
+        defaultValue={params.company}
       />
 
       <FormSelect
@@ -36,18 +38,21 @@ const Filter = () => {
         name="order"
         list={["a-z","z-a","high","low"]}
         size="select-sm"
+        defaultValue={params.order}
       />
 
       <FormRange
         label="Select Price"
         name="price"
         size="range-sm"
+        price={params.price}
       />
 
       <FormCheckbox
         label="Free Shipping"
         name="shipping"
         size="checkbox-sm"
+        defaultValue={params.shipping}
       />
 
       <button
